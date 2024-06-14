@@ -10,7 +10,7 @@ const IndividualForm = ({ individuals, addIndividual, updateIndividual }) => {
             <label className="block mb-1">ID:</label>
             <input
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={individual.id}
               onChange={(e) => updateIndividual(index, 'id', e.target.value)}
             />
@@ -19,7 +19,7 @@ const IndividualForm = ({ individuals, addIndividual, updateIndividual }) => {
             <label className="block mb-1">Name:</label>
             <input
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={individual.name}
               onChange={(e) => updateIndividual(index, 'name', e.target.value)}
             />
@@ -28,7 +28,7 @@ const IndividualForm = ({ individuals, addIndividual, updateIndividual }) => {
             <label className="block mb-1">Sex:</label>
             <input
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={individual.sex}
               onChange={(e) => updateIndividual(index, 'sex', e.target.value)}
             />
@@ -37,7 +37,7 @@ const IndividualForm = ({ individuals, addIndividual, updateIndividual }) => {
             <label className="block mb-1">FAMS:</label>
             <input
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={individual.fams}
               onChange={(e) => updateIndividual(index, 'fams', e.target.value)}
             />
@@ -46,7 +46,7 @@ const IndividualForm = ({ individuals, addIndividual, updateIndividual }) => {
             <label className="block mb-1">FAMC:</label>
             <input
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={individual.famc}
               onChange={(e) => updateIndividual(index, 'famc', e.target.value)}
             />

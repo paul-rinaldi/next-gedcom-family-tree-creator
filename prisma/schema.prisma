@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Individual {
+  id                Int           @id @default(autoincrement())
+  gedcomId          String        @unique
+  firstName         String
+  lastName          String
+  gender            String
+  birthDate         DateTime?
+  deathDate         DateTime?
+  birthPlace        String?
+  deathPlace        String?
+  familiesAsParent  Family[]      @relation("Parents")
+  familiesAsChild   Family[]      @relation("Children", references: [childIds])
+  children          Individual[]  @relation("Children")
+}
+
+model Family {
+  id                Int           @id @default(autoincrement())
+  gedcomId          String        @unique
+  husbandId         Int?
+  wifeId            Int?
+  husband           Individual?   @relation("Parents", fields: [husbandId], references: [id])
+  wife              Individual?   @relation("Parents", fields: [wifeId], references: [id])
+  children          Individual[]  @relation("Children", fields: [childIds], references: [id])
+  marriageDate      DateTime?
+  divorceDate       DateTime?
+  childIds          Int[]         // Array of child IDs
+}
+
+model Event {
+  id                Int           @id @default(autoincrement())
+  gedcomId          String        @unique
+  type              String
+  date              DateTime?
+  place             String?
+  individualId      Int?
+  familyId          Int?
+  individual        Individual?   @relation(fields: [individualId], references: [id])
+  family            Family?       @relation(fields: [familyId], references: [id])
+}
+
+model Source {
+  id                Int           @id @default(autoincrement())
+  gedcomId          String        @unique
+  title             String
+  author            String?
+  publicationDate   DateTime?
+  repository        String?
+  citation          String?
+  events            Event[]
+}
+
+model Note {
+  id                Int           @id @default(autoincrement())
+  gedcomId          String        @unique
+  text              String
+  individualId      Int?
+  familyId          Int?
+  individual        Individual?   @relation(fields: [individualId], references: [id])
+  family            Family?       @relation(fields: [familyId], references: [id])
+}
+
+model Repository {
+  id                Int           @id @default(autoincrement())
+  gedcomId          String        @unique
+  name              String
+  address           String?
+  sources           Source[]
+}
+
+model Submitter {
+  id                Int           @id @default(autoincrement())
+  gedcomId          String        @unique
+  name              String
+  address           String?
+}

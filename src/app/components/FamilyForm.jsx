@@ -16,7 +16,7 @@ const FamilyForm = ({
             <label className="block mb-1">ID:</label>
             <input
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={family.id}
               onChange={(e) => updateFamily(index, "id", e.target.value)}
             />
@@ -25,7 +25,7 @@ const FamilyForm = ({
             <label className="block mb-1">Husband:</label>
             <input
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={family.husband}
               onChange={(e) => updateFamily(index, "husband", e.target.value)}
             />
@@ -34,7 +34,7 @@ const FamilyForm = ({
             <label className="block mb-1">Wife:</label>
             <input
               type="text"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border text-black rounded"
               value={family.wife}
               onChange={(e) => updateFamily(index, "wife", e.target.value)}
             />
@@ -57,7 +57,7 @@ const FamilyForm = ({
                 <label className="block mb-1">Child ID:</label>
                 <input
                   type="text"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border text-black rounded"
                   value={child}
                   onChange={(e) =>
                     updateFamilyChild(index, childIndex, e.target.value)

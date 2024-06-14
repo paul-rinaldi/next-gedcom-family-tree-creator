@@ -1,7 +1,11 @@
+import fs from "fs";
+import path from "path";
+
 export default function handler(req, res) {
   if (req.method === "POST") {
     const { header, individuals, families, submitter } = req.body;
 
+    // todo header.source i dont see this elsewhere do we delete it
     const gedcomData = `
       0 HEAD
       1 SOUR ${header.source}
@@ -39,6 +43,19 @@ export default function handler(req, res) {
     0 TRLR`;
 
     console.log(gedcomData);
+
+    const filePath = path.join(__dirname, "output.ged");
+    fs.writeFile(filePath, gedcomData, (err) => {
+      if (err) {
+        console.error("Failed to save GEDCOM data:", err);
+        res.status(500).json({ message: "Failed to save GEDCOM data" });
+      } else {
+        console.log("GEDCOM data saved successfully to", filePath);
+        res
+          .status(200)
+          .json({ message: "GEDCOM data saved successfully", filePath });
+      }
+    });
 
     res
       .status(200)
